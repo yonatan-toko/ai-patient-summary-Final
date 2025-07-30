@@ -12,12 +12,14 @@ This project is a full-stack healthcare application designed for an engineering 
 
 ## Tech Stack
 
-| Layer       | Technology       | Purpose                                |
-|-------------|------------------|----------------------------------------|
-| Backend     | Python (FastAPI) | RESTful API, LLM integration, DB logic |
-| Frontend    | React            | UI for entering and viewing visits     |
-| Database    | MongoDB          | Persistent storage of visit data       |
-| AI Engine   | OpenAI GPT-4     | Personalized recommendations           |
+| Layer       | Technology                                           | Purpose                                |
+|-------------|------------------------------------------------------|----------------------------------------|
+| Backend     | Python   (FastAPI)                                   | RESTful API, LLM integration, DB logic |
+| Frontend    | React    (Vite)                                      | UI for entering and viewing visits     |
+| Database    | MongoDB  (Atlas)                                     | Persistent storage of visit data       |
+| AI Engine   | `mistralai/mixtral-8x7b-instruct` via OpenRouter     | Personalized recommendations           |
+| Styling     | Inline CSS / CSS-in-JS                               |                                        |
+| Versioning  | Git + GitHub                                         |                                        |
 
 ---
 
@@ -57,7 +59,56 @@ Each subfolder (`/backend`, `/frontend`) contains its own README with installati
 - Node.js and npm
 - Python 3.10+
 - Git
-- MongoDB (local or Atlas)
+- MongoDB (Atlas)
 - API key for selected LLM provider
 
-> Setup instructions will be expanded as development progresses.
+---
+
+## How to Run Locally
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/ai-patient-summary.git
+cd ai-patient-summary
+
+### 2. Start the Backend
+
+cd backend
+py -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+Create a .env file (or use environment variables) with:
+MONGODB_URL=your_mongodb_connection_string
+OPENROUTER_API_KEY=your_openrouter_api_key
+
+### 3. Start the Frontend:
+
+cd ../frontend
+npm install
+npm run dev
+
+Then open: http://localhost:5173
+
+---
+
+# Project Structure
+
+ai-patient-summary/
+├── backend/
+│   ├── main.py
+│   ├── llm.py
+│   └── ...
+├── frontend/
+│   ├── VisitForm.jsx
+│   ├── VisitList.jsx
+│   └── ...
+└── README.md
+
+---
+
+> Thank you for reviewing this project, and for this amazing and fun opportunity :)
+> Feel free to explore the code, test the app, or reach out with any questions:
+> Yonatan Hadad - Email: yonatan.hadad24@gmail.com
