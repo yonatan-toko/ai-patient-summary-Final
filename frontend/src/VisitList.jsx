@@ -40,17 +40,25 @@ const generateForVisit = async (visit) => {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {visits.map((visit) => (
-            <div key={visit._id} style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '8px' }}>
-                <strong>{visit.patientName}</strong> – {visit.visitDate}<br />
+            <div key={visit._id} style={{ border: '1px solid #ddd', padding: '1rem', borderRadius: '10px', background: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+                <strong style={{ fontSize: '1.1rem' }}>{visit.patientName}</strong> – {visit.visitDate}<br />
                 <em>{visit.doctorName}</em><br />
                 <p>{visit.visitSummary}</p>
                 <p><strong>Diagnosis:</strong> {visit.diagnosis}</p>
-                <button onClick={() => generateForVisit(visit)} disabled={generatingId === visit.id}>
+                <button onClick={() => generateForVisit(visit)} disabled={generatingId === visit.id}
+                    style={{
+                    background: '#28a745',
+                    color: 'white',
+                    border: 'none',
+                    padding: '0.4rem 0.8rem',
+                    borderRadius: '6px',
+                    cursor: generatingId === visit._id ? 'wait' : 'pointer'
+                    }}>
                     {generatingId === visit.id ? 'Generating...' : '🧠 Magic Recommendations'}
                 </button>
 
               {recommendations[visit._id] && (
-                <div style={{ marginTop: '0.5rem', background: '#f3f3f3', padding: '0.5rem', borderRadius: '6px' }}>
+                <div style={{ marginTop: '1rem', background: '#f1f1f1', padding: '0.75rem', borderRadius: '8px', fontStyle: 'italic' }}>
                     <strong>AI Recommendations:</strong>
                     <p style={{ whiteSpace: 'pre-line' }}>{recommendations[visit._id]}</p>
                 </div>

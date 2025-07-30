@@ -15,8 +15,8 @@ const App = () => {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <h1>Patient Visit Form</h1>
+    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto', fontFamily: 'Arial, sans-serif', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <h1 style={{ textAlign: 'center' }}>🩺 Patient Visit Assistant</h1>
       <VisitForm onSubmit={handleVisitSubmit} />
       <VisitList />
     </div>
