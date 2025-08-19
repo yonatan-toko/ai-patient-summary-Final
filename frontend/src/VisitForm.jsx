@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
+import * as amplitude from '@amplitude/analytics-browser'
 
 const VisitForm = ({ onSubmit }) => {
   const [form, setForm] = useState({
@@ -9,12 +10,42 @@ const VisitForm = ({ onSubmit }) => {
     diagnosis: '',
   })
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+  // Fire-once guard: ref avoids stale state in closures
+  const hasStartedRef = useRef(false)
+  const startTimeRef = useRef(null)
+
+  // Call this on the very first user interaction with the form
+  const markFormStarted = (fieldName) => {
+    if (hasStartedRef.current) return
+    hasStartedRef.current = true
+    startTimeRef.current = Date.now()
+
+    amplitude.track('visit_form_started', {field: fieldName})
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+    // First keystroke triggers the event if not already sent
+    markFormStarted(name)
+  }
+
+  const handleFocus = (e) => {
+    // If user focuses first (before typing), we still count it as started
+    markFormStarted(e.target.name)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit?.(form)
+
+    const elapsedTime = Date.now() - (startTimeRef.current || Date.now())
+
+    onSubmit?.({...form, elapsedTime})
     setForm({ patientName: '', visitDate: '', doctorName: '', visitSummary: '', diagnosis: '' })
+
+    // Reset for next form use
+    hasStartedRef.current = false
+    startTimeRef.current = null
   }
 
   const inputCls =
@@ -23,12 +54,14 @@ const VisitForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="bg-white shadow-sm rounded-2xl p-5 space-y-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
         <label className="space-y-1">
           <span className="text-sm font-medium text-gray-700">Patient Name</span>
           <input
             name="patientName"
             value={form.patientName}
             onChange={handleChange}
+            onFocus={handleFocus}
             placeholder="e.g., Alex Smith"
             required
             className={inputCls}
@@ -41,6 +74,7 @@ const VisitForm = ({ onSubmit }) => {
             name="doctorName"
             value={form.doctorName}
             onChange={handleChange}
+            onFocus={handleFocus}
             placeholder="e.g., Dr. Grey"
             required
             className={inputCls}
@@ -54,6 +88,7 @@ const VisitForm = ({ onSubmit }) => {
             name="visitDate"
             value={form.visitDate}
             onChange={handleChange}
+            onFocus={handleFocus}
             required
             className={inputCls}
           />
@@ -65,6 +100,7 @@ const VisitForm = ({ onSubmit }) => {
             name="diagnosis"
             value={form.diagnosis}
             onChange={handleChange}
+            onFocus={handleFocus}
             placeholder="e.g., Common cold"
             required
             className={inputCls}
@@ -78,6 +114,7 @@ const VisitForm = ({ onSubmit }) => {
           name="visitSummary"
           value={form.visitSummary}
           onChange={handleChange}
+          onFocus={handleFocus}
           placeholder="Chief complaint, key findings, plan…"
           rows={4}
           required

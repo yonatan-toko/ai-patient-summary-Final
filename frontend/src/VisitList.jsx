@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import * as amplitude from '@amplitude/analytics-browser'
+
+
 
 const VisitList = ({ visits }) => {
   const [generatingId, setGeneratingId] = useState(null)
@@ -11,6 +14,7 @@ const VisitList = ({ visits }) => {
       const res = await fetch(`http://127.0.0.1:8000/api/visits/${visitId}/recommendations`, {
         method: 'POST',
       })
+
       const data = await res.json()
       setRecommendations((prev) => ({ ...prev, [visitId]: data.recommendations }))
     } catch (error) {
@@ -19,7 +23,10 @@ const VisitList = ({ visits }) => {
     } finally {
       setGeneratingId(null)
     }
+
+    amplitude.track('reccomendation_generated', {doctorName: visit.doctorName})
   }
+
 
   return (
     <section>

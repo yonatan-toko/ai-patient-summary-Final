@@ -3,43 +3,53 @@ import ReactDOM from 'react-dom/client'
 import VisitForm from './VisitForm'
 import VisitList from './VisitList'
 import './index.css'
+import { initAnalytics } from './analytics';
+
+const amplitude = initAnalytics();
 
 const App = () => {
-  const [visits, setVisits] = useState([])
-  const [toast, setToast] = useState(null)
+  const [visits, setVisits] = useState([]);
+  const [toast, setToast] = useState(null);
 
   const fetchVisits = async () => {
-    const res = await fetch('http://127.0.0.1:8000/api/visits')
-    const data = await res.json()
-    setVisits(data)
-  }
+    const res = await fetch('http://127.0.0.1:8000/api/visits');
+    const data = await res.json();
+    setVisits(data);
+  };
 
   useEffect(() => {
-    fetchVisits()
-  }, [])
+    fetchVisits();
+  }, []);
 
+  // We’ll track an event here, on successful submit.
   const handleVisitSubmit = async (formData) => {
     try {
       const res = await fetch('http://127.0.0.1:8000/api/visits', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      })
-      const data = await res.json()
-      if (!res.ok) {
-        throw new Error(data?.detail || 'Submit failed')
-      }
-      // ✅ auto-refresh list
-      await fetchVisits()
-      // inline toast (nice UX)
-      setToast({ type: 'success', msg: 'Visit submitted' })
-      setTimeout(() => setToast(null), 1500)
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.detail || 'Submit failed');
+
+      // Send ONE Amplitude event after a successful submit
+      amplitude.track('visit_submitted', {
+        doctorName: formData.doctorName,
+        visitDate: formData.visitDate,
+        diagnosis: formData.diagnosis,
+        timeToSubmit: typeof formData.elapsedTime === 'number' ? Math.round(formData.elapsedTime / 1000) : null // in seconds
+      });
+
+      await fetchVisits();
+      setToast({ type: 'success', msg: 'Visit submitted' });
+      setTimeout(() => setToast(null), 1500);
     } catch (err) {
-      console.error(err)
-      setToast({ type: 'error', msg: String(err.message || err) })
-      setTimeout(() => setToast(null), 2500)
+      console.error(err);
+      setToast({ type: 'error', msg: String(err.message || err) });
+      setTimeout(() => setToast(null), 2500);
     }
-  }
+  };
+
 
   return (
     <div className="min-h-screen bg-gray-50">

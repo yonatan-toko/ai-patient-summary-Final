@@ -7,6 +7,7 @@ from bson import ObjectId
 import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
+from amplitude_client import send_event
 
 
 load_dotenv()
@@ -64,6 +65,20 @@ async def get_recommendations(visit_id: str):
 
     try:
         recommendations = generate_recommendations(summary)
+
+        try:
+            send_event(
+                user_id="anonymous_user",
+                event_type="recommendations_generated",
+                event_properties={
+                    "visit_id": visit_id,
+                    "summary_length": len(summary),
+                    "recommendations_count": len(recommendations)
+                }
+            )
+        except Exception as e:
+            print(f"Failed to send event: {e}")
+
         return {"recommendations": recommendations}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
