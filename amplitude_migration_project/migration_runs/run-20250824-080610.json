@@ -1,0 +1,244 @@
+{
+  "started_at": 1756022770.9036548,
+  "ended_at": 1756022770.9059,
+  "duration_s": 0.002,
+  "report_path": "/Users/yonatanhadadtoko/Documents/GitHub/ai-patient-summary-Final/amplitude_migration_project/migration_runs/run-20250824-080610.json",
+  "source": {
+    "region": "US",
+    "export_start": "",
+    "export_end": "",
+    "local_export_path": "/Users/yonatanhadadtoko/Documents/GitHub/ai-patient-summary-Final/backend/exports/unpacked/727121/727121_2025-08-17_7#0.json.gz"
+  },
+  "destination": {
+    "region": "US"
+  },
+  "counters": {
+    "events_read": 17,
+    "events_kept": 6,
+    "events_sent": 0,
+    "batches": [],
+    "events_remapped_device_id": 6
+  },
+  "mtu": {
+    "unique_user_ids": 0,
+    "unique_device_ids": 1,
+    "strategy": "union",
+    "rate_usd": 0.0,
+    "estimate": 1,
+    "estimated_cost_usd": 0.0
+  },
+  "id_remap": {
+    "enabled": true,
+    "user_map_path": "/Users/yonatanhadadtoko/Documents/GitHub/ai-patient-summary-Final/amplitude_migration_project/device_id_remap.csv",
+    "device_map_path": null,
+    "scope": "device_id",
+    "preserve_original_ids": true,
+    "unmapped_policy": "keep"
+  },
+  "samples": {
+    "limit": 5,
+    "count": 5,
+    "events": [
+      {
+        "event_type": "visit_submitted",
+        "event_properties": {
+          "visitDate": "2025-08-20",
+          "doctorName": "ernej",
+          "_migration": {
+            "orig_device_id": "4c398b47-998a-4d48-bc96-15983fe496b6",
+            "id_remap_applied": true
+          }
+        },
+        "user_id": null,
+        "device_id": "device_12345",
+        "time": 1755414393617,
+        "user_properties": {
+          "initial_utm_medium": "EMPTY",
+          "initial_referring_domain": "localhost:5173",
+          "initial_utm_content": "EMPTY",
+          "initial_utm_campaign": "EMPTY",
+          "initial_twclid": "EMPTY",
+          "initial_li_fat_id": "EMPTY",
+          "referrer": "http://localhost:5173/",
+          "initial_gclid": "EMPTY",
+          "initial_utm_source": "EMPTY",
+          "initial_dclid": "EMPTY",
+          "initial_wbraid": "EMPTY",
+          "initial_fbclid": "EMPTY",
+          "initial_rtd_cid": "EMPTY",
+          "initial_utm_id": "EMPTY",
+          "initial_referrer": "http://localhost:5173/",
+          "initial_gbraid": "EMPTY",
+          "initial_utm_term": "EMPTY",
+          "initial_msclkid": "EMPTY",
+          "initial_ttclid": "EMPTY",
+          "initial_ko_click_id": "EMPTY",
+          "referring_domain": "localhost:5173"
+        },
+        "groups": {}
+      },
+      {
+        "event_type": "visit_submitted",
+        "event_properties": {
+          "visitDate": "2025-08-12",
+          "doctorName": "fer",
+          "_migration": {
+            "orig_device_id": "4c398b47-998a-4d48-bc96-15983fe496b6",
+            "id_remap_applied": true
+          }
+        },
+        "user_id": null,
+        "device_id": "device_12345",
+        "time": 1755414831979,
+        "user_properties": {
+          "initial_utm_medium": "EMPTY",
+          "initial_referring_domain": "localhost:5173",
+          "initial_utm_content": "EMPTY",
+          "initial_utm_campaign": "EMPTY",
+          "initial_twclid": "EMPTY",
+          "initial_li_fat_id": "EMPTY",
+          "referrer": "http://localhost:5173/",
+          "initial_gclid": "EMPTY",
+          "initial_utm_source": "EMPTY",
+          "initial_dclid": "EMPTY",
+          "initial_wbraid": "EMPTY",
+          "initial_fbclid": "EMPTY",
+          "initial_rtd_cid": "EMPTY",
+          "initial_utm_id": "EMPTY",
+          "initial_referrer": "http://localhost:5173/",
+          "initial_gbraid": "EMPTY",
+          "initial_utm_term": "EMPTY",
+          "initial_msclkid": "EMPTY",
+          "initial_ttclid": "EMPTY",
+          "initial_ko_click_id": "EMPTY",
+          "referring_domain": "localhost:5173"
+        },
+        "groups": {}
+      },
+      {
+        "event_type": "visit_submitted",
+        "event_properties": {
+          "visitDate": "2025-08-12",
+          "doctorName": "few",
+          "_migration": {
+            "orig_device_id": "4c398b47-998a-4d48-bc96-15983fe496b6",
+            "id_remap_applied": true
+          }
+        },
+        "user_id": null,
+        "device_id": "device_12345",
+        "time": 1755415592808,
+        "user_properties": {
+          "initial_utm_medium": "EMPTY",
+          "initial_referring_domain": "localhost:5173",
+          "initial_utm_content": "EMPTY",
+          "initial_utm_campaign": "EMPTY",
+          "initial_twclid": "EMPTY",
+          "initial_li_fat_id": "EMPTY",
+          "referrer": "http://localhost:5173/",
+          "initial_gclid": "EMPTY",
+          "initial_utm_source": "EMPTY",
+          "initial_dclid": "EMPTY",
+          "initial_wbraid": "EMPTY",
+          "initial_fbclid": "EMPTY",
+          "initial_rtd_cid": "EMPTY",
+          "initial_utm_id": "EMPTY",
+          "initial_referrer": "http://localhost:5173/",
+          "initial_gbraid": "EMPTY",
+          "initial_utm_term": "EMPTY",
+          "initial_msclkid": "EMPTY",
+          "initial_ttclid": "EMPTY",
+          "initial_ko_click_id": "EMPTY",
+          "referring_domain": "localhost:5173"
+        },
+        "groups": {}
+      },
+      {
+        "event_type": "visit_submitted",
+        "event_properties": {
+          "visitDate": "2025-08-11",
+          "doctorName": "fer",
+          "_migration": {
+            "orig_device_id": "4c398b47-998a-4d48-bc96-15983fe496b6",
+            "id_remap_applied": true
+          }
+        },
+        "user_id": null,
+        "device_id": "device_12345",
+        "time": 1755415753954,
+        "user_properties": {
+          "initial_utm_medium": "EMPTY",
+          "initial_referring_domain": "localhost:5173",
+          "initial_utm_content": "EMPTY",
+          "initial_utm_campaign": "EMPTY",
+          "initial_twclid": "EMPTY",
+          "initial_li_fat_id": "EMPTY",
+          "referrer": "http://localhost:5173/",
+          "initial_gclid": "EMPTY",
+          "initial_utm_source": "EMPTY",
+          "initial_dclid": "EMPTY",
+          "initial_wbraid": "EMPTY",
+          "initial_fbclid": "EMPTY",
+          "initial_rtd_cid": "EMPTY",
+          "initial_utm_id": "EMPTY",
+          "initial_referrer": "http://localhost:5173/",
+          "initial_gbraid": "EMPTY",
+          "initial_utm_term": "EMPTY",
+          "initial_msclkid": "EMPTY",
+          "initial_ttclid": "EMPTY",
+          "initial_ko_click_id": "EMPTY",
+          "referring_domain": "localhost:5173"
+        },
+        "groups": {}
+      },
+      {
+        "event_type": "visit_submitted",
+        "event_properties": {
+          "visitDate": "2025-08-12",
+          "doctorName": "r43",
+          "_migration": {
+            "orig_device_id": "4c398b47-998a-4d48-bc96-15983fe496b6",
+            "id_remap_applied": true
+          }
+        },
+        "user_id": null,
+        "device_id": "device_12345",
+        "time": 1755416339790,
+        "user_properties": {
+          "initial_utm_medium": "EMPTY",
+          "initial_referring_domain": "localhost:5173",
+          "initial_utm_content": "EMPTY",
+          "initial_utm_campaign": "EMPTY",
+          "initial_twclid": "EMPTY",
+          "initial_li_fat_id": "EMPTY",
+          "referrer": "http://localhost:5173/",
+          "initial_gclid": "EMPTY",
+          "initial_utm_source": "EMPTY",
+          "initial_dclid": "EMPTY",
+          "initial_wbraid": "EMPTY",
+          "initial_fbclid": "EMPTY",
+          "initial_rtd_cid": "EMPTY",
+          "initial_utm_id": "EMPTY",
+          "initial_referrer": "http://localhost:5173/",
+          "initial_gbraid": "EMPTY",
+          "initial_utm_term": "EMPTY",
+          "initial_msclkid": "EMPTY",
+          "initial_ttclid": "EMPTY",
+          "initial_ko_click_id": "EMPTY",
+          "referring_domain": "localhost:5173"
+        },
+        "groups": {}
+      }
+    ]
+  },
+  "settings": {
+    "dry_run": true,
+    "batch_size": 500,
+    "time_strategy": "prefer_client_fallback_server_received",
+    "original_times_as_properties": false,
+    "allowlist": [
+      "visit_submitted"
+    ],
+    "denylist": []
+  }
+}
